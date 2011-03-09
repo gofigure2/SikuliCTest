@@ -31,7 +31,7 @@ ELSE( UNIX ) # Windows
 ENDIF( UNIX )
 
 INCLUDE( FindPackageHandleStandardArgs )
-FIND_PACKAGE_HANDLE_STANDARD_ARGS(Sikuli DEFAULT_MSG Sikuli_EXECUTABLE)
+FIND_PACKAGE_HANDLE_STANDARD_ARGS(Sikuli DEFAULT_MSG SIKULI_EXECUTABLE)
 
 # --------------------------------------------------------------------------
 # This variable is meant to be used when developers maintain a image library# for their test.
