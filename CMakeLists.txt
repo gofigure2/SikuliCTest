@@ -21,6 +21,11 @@ if( SIKULI_FOUND )
     test2.sikuli
     arg1 arg2 arg3 arg4
   )
+
+  add_sikuli_test( test3
+    test3.sikuli
+  )
+
 else()
   message( "Sikuli not found" )
 endif()

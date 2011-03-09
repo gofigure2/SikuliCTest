@@ -1,4 +1,4 @@
-from sikuli.Sikuli import *
+#from sikuli.Sikuli import *
 
 #def MyOwnTest(self):
 #print "Thunderbird"
