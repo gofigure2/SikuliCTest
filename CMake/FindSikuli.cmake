@@ -90,7 +90,10 @@ FUNCTION( add_sikuli_test testname sikuli_test )
     add_test( ${testname}
       ${SH_EXECUTABLE} ${SIKULI_EXECUTABLE}
       -t ${SIKULI_RUNNING_DIR}/${sikuli_test}
-      ${sikuli_args} )
+      ${sikuli_args}
+      -s
+    )
+
   ELSE( UNIX )
 
     add_test( ${testname}
