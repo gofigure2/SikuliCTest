@@ -87,9 +87,11 @@ FUNCTION( add_sikuli_test testname sikuli_test )
   ENDIF()
 
   IF( UNIX )
-    add_test( ${testname}
-      ${SH_EXECUTABLE} ${SIKULI_EXECUTABLE}
+    add_test( NAME ${testname}
+      #WORKING_DIRECTORY ${SIKULI_RUNNING_DIR}/${sikuli_test}
+      COMMAND ${SH_EXECUTABLE} ${SIKULI_EXECUTABLE}
       -t ${SIKULI_RUNNING_DIR}/${sikuli_test}
+      #-t ${SIKULI_RUNNING_DIR}/${sikuli_test}
       ${sikuli_args}
       -s
     )

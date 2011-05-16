@@ -1,6 +1,9 @@
-import sys
-from sikuli.Sikuli import *
+def setUp(self):
+  print "setUp";
 
-args=sys.argv;
-print args;
-	
+def testA(self):
+  print "failing test";
+  assertExist( "1301610526405.png" );
+
+def tearDown(self):
+  print "tearDown";

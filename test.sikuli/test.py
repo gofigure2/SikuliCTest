@@ -1,5 +1,6 @@
-#from sikuli.Sikuli import *
+def setUp(self):
+  print "setUp";
 
-#def MyOwnTest(self):
-#print "Thunderbird"
-click("1299697212820.png")
+def testA(self):
+  print "Click on thunderbird"
+  click("1299697212820.png")

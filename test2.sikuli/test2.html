@@ -70,11 +70,12 @@
 <h2>test2.sikuli</h2> <a href="test2.zip">(Download this script)</a>
 </div>
 <pre class="sikuli-code">
-<span class="kw">import</span> sys
-<span class="kw">from</span> sikuli.Sikuli <span class="kw">import</span> *
+<span class="kw">def</span> setUp(self):
+  <span class="kw">print</span> <span class="str">"setUp"</span>;
 
-args=sys.argv;
-<span class="kw">print</span> args;
+<span class="kw">def</span> testA(self):
+  <span class="kw">print</span> <span class="str">"failing test"</span>
+  <span class="skw">assertExist</span>(Pattern(<img src="1301610526405.png" />).similar(<span class="dig">0.9</span>));
 </pre>
 </body>
 </html>
