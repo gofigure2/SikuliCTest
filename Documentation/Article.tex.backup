@@ -94,17 +94,7 @@ Arnaud Gelas, Sean Megason}
 % Feel free to change section titles
 \subsection{What is sikuli?}
 Sikuli is a programming language that uses screen shot images as variables\\
-and objects in order to automate graphical user interface functions.  The\\
-Sikuli program is comprised of an IDE where the user can write scripts that\\
-include screen shot thumbnails so they can visually track the functions of\\
-their code.  The Sikuli Script is built on a Jython (Python for Java platform)\\
-library which uses Python syntax in addition to a number of special Sikuli\\
-functions for aquiring and handling screenshot images and performing mouse,\\
-keyboard actions, the most useful of which are conveniently found as buttons\\
-on the Sikuli IDE.     
-
-One of Sikuli's primary uses is the automation of GUI testing for software\\
-developers.
+and objects in order to automate graphical user interface functions. 
 \subsection{Simple of example} % not related to gofigure...
 
 
