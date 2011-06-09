@@ -4,3 +4,11 @@
 build/
 BUILD/
 CTestConfig.cmake
+
+# latex
+*.aux
+*.bbl
+*.blg
+*.out
+*.pdf
+*.toc
