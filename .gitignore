@@ -12,3 +12,4 @@ CTestConfig.cmake
 *.out
 *.pdf
 *.toc
+*.brf
