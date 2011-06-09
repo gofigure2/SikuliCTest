@@ -101,13 +101,15 @@ their code. The Sikuli Script is built on a Jython (Python for Java platform)
 library which uses Python syntax in addition to a number of special Sikuli
 functions for aquiring and handling screenshot images and performing mouse,
 keyboard actions, the most useful of which are conveniently found as buttons
-on the Sikuli IDE.     
+on the Sikuli IDE.  Sikuli then saves a script in a directory with a unique
+extension .sikuli.  The directory consists of a the Sikuli script file in a 
+html file and as well as a Python script file and includes a list of all the 
+screenshot images used in the script. 
 
-One of Sikuli's primary uses is the automation of GUI testing for software
-developers.
+ 
 
 
-\subsection{Simple of example} % not related to gofigure...
+\subsection{Simple Sikuli example} % not related to gofigure...
 
 \begin{figure}[htp]
  \centering
@@ -119,6 +121,17 @@ developers.
 % ------------------------------------------------------------------------
 \section{Integration with CTest}
 % I'll write it this part
+One of Sikuli's primary uses is the automation of GUI testing for software
+developers.  For GUI testing, it is useful to compartmentalize different software functions and test each unit
+individually.  The newest versions of Sikuli come equipped with a Unit Testing feature 
+Unit Testing.  Unit Testing can be called using the IDE or by command
+line and enables the user to write multiple functions in a script which are
+run individually.  At the end of the run, the Sikuli output will tell the user
+how many tests ran successfully and which ones failed and where.  To connect this
+Unit Testing feature directly to our software, we integrated Sikuli with CTest.
+.....
+.....
+
 
 % ------------------------------------------------------------------------
 \section{Example}
