@@ -24,6 +24,8 @@ backref,
 colorlinks,linkcolor={blue},citecolor={blue},urlcolor={blue},
 ]{hyperref}
 
+\usepackage{url}
+
 
 %  This is a template for Papers to the Insight Journal. 
 %  It is comparable to a technical report format.
@@ -90,20 +92,26 @@ Arnaud Gelas, Sean Megason}
 
 % Feel free to change section titles
 \subsection{What is sikuli?}
-Sikuli is a programming language that uses screen shot images as variables
-and objects in order to automate graphical user interface functions. The
-Sikuli program is comprised of an IDE where the user can write scripts that 
-include screen shot thumbnails so they can visually track the functions of
-their code. The Sikuli Script is built on a Jython (Python for Java platform)
-library which uses Python syntax in addition to a number of special Sikuli
-functions for aquiring and handling screenshot images and performing mouse,
-keyboard actions, the most useful of which are conveniently found as buttons
-on the Sikuli IDE.  Sikuli then saves a script in a directory with a unique
-extension .sikuli.  The directory consists of a the Sikuli script file in a 
-html file and as well as a Python script file and includes a list of all the 
-screenshot images used in the script. 
 
- 
+Sikuli~\cite{Sikuli:Documentation,Sikuli:Website,Yeh:2009:Sikuli} is a visual
+technology to automate and test graphical user interfaces (GUI) using images
+(screenshots). Sikuli includes \emph{Sikuli Script} and \emph{Sikuli IDE}.\\
+
+\emph{Sikuli Script} automates anything you see on the screen without internal
+API's support. Sikuli Script is a programming language that uses screen shot
+images as variables and objects in order to automate graphical user interface
+functions. The Sikuli Script is built on a Jython (Python for Java platform)
+library which uses Python syntax in addition to a number of special Sikuli
+functions for acquiring and handling screen shot images and performing mouse,
+keyboard actions.\\
+
+In the \emph{Sikuli IDE}, the user can write scripts that include screen shot
+thumbnails so they can visually track the functions of their code. The most
+useful functions from Sikuli scripts are conveniently found as
+buttons on the IDE. When using the IDE, Sikuli then saves a script in a
+directory with a unique extension .sikuli. The directory consists of a python
+script file (script file to be used by sikuli), an html file, and a list of all
+the screenshot images used in the script.
 
 
 \subsection{Simple Sikuli example} % not related to gofigure...
@@ -138,7 +146,7 @@ Unit Testing feature directly to our software, we integrated Sikuli with CTest.
 \clearpage
 
 \bibliographystyle{plain}
-\bibliography{InsightJournal}
+\bibliography{InsightJournal,biblio}
 
 
 \end{document}
