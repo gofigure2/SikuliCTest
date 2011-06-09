@@ -124,17 +124,20 @@ the screenshot images used in the script.
 
 % ------------------------------------------------------------------------
 \section{Integration with CTest}
+
 % I'll write it this part
 One of Sikuli's primary uses is the automation of GUI testing for software
-developers.  For GUI testing, it is useful to compartmentalize different software functions and test each unit
-individually.  The newest versions of Sikuli come equipped with a Unit Testing feature 
-Unit Testing.  Unit Testing can be called using the IDE or by command
+developers. For GUI testing, it is useful to compartmentalize different software
+functions and test each unit individually.\\
+
+The newest versions of Sikuli come equipped with a Unit Testing feature based
+on JUnit~\cite{}. Unit Testing can be called using the IDE or by command
 line and enables the user to write multiple functions in a script which are
-run individually.  At the end of the run, the Sikuli output will tell the user
-how many tests ran successfully and which ones failed and where.  To connect this
-Unit Testing feature directly to our software, we integrated Sikuli with CTest.
-.....
-.....
+run individually. At the end of the run, the Sikuli output will tell the user
+how many tests ran successfully and which ones failed and where.\\
+
+Here we connect this Unit Testing feature to CTest, this allows us to report
+results on public dashboard using CDash.
 
 
 % ------------------------------------------------------------------------
