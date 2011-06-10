@@ -156,7 +156,24 @@ results on public dashboard using CDash.
 % ------------------------------------------------------------------------
 \section{Example}
 
-Can you add comments in your example, please?
+The Sikuli script in Figure 2 shows a unit test for the GoFigure2 software.  The unit being tested here
+is the Toolbar menu which consists of different modes used to analyze data set plots, like zoom and pan.
+In total there are four modes which are represented in the first line as the vector Toolbar and for each
+of these modes we want to test their expected mouse functions.  For instance, if we are in the zoom Toolbar mode
+then we would want the data set plot to zoom in when the user scrolls the mouse wheel towards the computer.  Likewise,
+if we are in pan mode then we want the plot to move to the left if the user holds down the left mouse button and moves
+the mouse to the left.  Also importantly, we want to see that these two mouse actions are unique for their respective Toolbar modes.
+The test will include an assertion that scrolling forward will zoom in when using zoom mode and will do nothing when using pan mode.\\
+
+This breakdown of modes and actions lends itself to a nested for-loop scripting approach. In addition to representing the modes and actions
+as the vectors Toolbar and Mouse, respectively, we've included the different data set plots in the vector ViewRegion.
+These images represent the xy, xz, yz, xyz views of zebrafish microscopy data taken in the Megason Lab.  After capturing
+these images we can then use them to locate their initial xy pixel coordinates within the GoFigure2 GUI using the find() function.  These points become 
+our reference positions to calculate directional movement.  For example, when testing the pan mode, we mark the initial position of each image,
+use the mouseMove() function to a chosen location, and then use find() to obtain the new coordinates.  We can then assert if the image panned as it should have.
+Similarly for zoom, we can first find the area of the image and then find the area of the zoomed in image.  To test the result when the user clicks 
+in a certain mode, we've made use of Sikuli's assert exists() function to ascertain the existence of our
+desired results.        (see Figure~\ref{fig:Gofigure2Example}).
 
 \begin{figure}[htp]
  \centering
