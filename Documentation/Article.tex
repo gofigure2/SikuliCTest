@@ -78,7 +78,7 @@ Arnaud Gelas, Sean Megason}
 \fi
 
 \begin{abstract}
-\noindent
+\noindent 
 \end{abstract}
 
 \IJhandlenote{\IJhandlerIDnumber}
@@ -116,16 +116,19 @@ the screenshot images used in the script.
 
 \subsection{Simple Sikuli example} % not related to gofigure...
 
-Figure 1 shows the Sikuli-IDE for version 0.10.2.  On the left-hand side menu is a list
-of commonly used Sikuli commands like  \emph{find}(),  \emph{click}(), and  \emph{type}().  The picture of
-the camera within the parentheses indicates the screenshot input variable.  Clicking
-on any of these menu functions will automatically set up the Sikuli screen shot mode, whereby
-the Sikuli-IDE disappears and what is on the screen at that moment is available to capture 
-by selecting a rectangular region of interest.  The function will then appear in the scripting domain
-with the snap shot in parentheses as shown in Figure 1.  The user may also type in the function
-and invoke the screen shot mode by clicking on the camera in the top menu or by using a
-keyboard shortcut. The simple Sikuli script example in Figure 1 will open gedit Text Editor, type a message,
-and save the file. (see Figure~\ref{fig:SimpleExample}).
+Figure~\ref{fig:SimpleExample} shows the Sikuli-IDE for version 0.10.2. On the
+left-hand side menu is a list of commonly used Sikuli commands
+like \emph{find}(), \emph{click}(), and \emph{type}(). The picture of
+the camera within the parentheses indicates the screenshot input variable.
+Clicking on any of these menu functions will automatically set up the Sikuli
+screen shot mode, whereby the Sikuli-IDE disappears and what is on the screen at
+that moment is available to capture by selecting a rectangular region of
+interest. The function will then appear in the scripting domain with the snap
+shot in parentheses as shown in Figure~\ref{fig:SimpleExample}. The user may
+also type in the function and invoke the screen shot mode by clicking on the
+camera in the top menu or by using a keyboard shortcut. The simple Sikuli script
+example in Figure~\ref{fig:SimpleExample} will open gedit Text Editor, type a
+message, and save the file.
 
 \begin{figure}[htbp]
  \centering
@@ -133,6 +136,59 @@ and save the file. (see Figure~\ref{fig:SimpleExample}).
  % SimpleSikuliExample.png: 1280x1024 pixel, 72dpi, 45.16x36.12 cm, bb=0 0 1280 1024
  \caption{Simple Sikuli Script Example in Sikuli-IDE}
  \label{fig:SimpleExample}
+\end{figure}
+
+% ------------------------------------------------------------------------
+\section{Example}
+
+The Sikuli script in Figure~\ref{fig:Gofigure2Example} shows a fragment of a
+unit test for the GoFigure2 software~\cite{GoFigure2:Website}. The unit being
+tested here is the Toolbar menu which consists of different modes used to
+analyze data set plots. In total there are four modes which are represented in
+the first line as the vector Toolbar and for each of these modes we want to test
+their expected mouse functions. For instance, if we are in the zoom Toolbar
+mode then we want the data set plot to zoom in when the user scrolls the mouse
+wheel forward. Likewise, if we are in pan mode then we want the plot to move to
+the left if the user holds down the left mouse button and moves the mouse to the
+left.  Also importantly, we want to see that these two mouse actions are unique
+for their respective Toolbar modes; the test will include an assertion that
+scrolling forward will zoom in when using zoom mode and will do nothing when
+using pan mode.\\
+
+This breakdown of modes and actions lends itself to a nested for-loop scripting
+approach. By representing these variables as a vector the software developers
+can easily add new modes or actions to each list to be tested, when the software
+is updated. Similarly, the tester can easily replace any of the screenshot
+images with images of updated GUI icons.\\  
+
+In addition to representing the modes and actions as the vectors Toolbar and
+Mouse, respectively, we have included the different data set plots in the
+vector ViewRegion. These images represent the \emph{xy-}, \emph{xz-},
+\emph{yz-}, and \emph{xyz-}views of zebrafish microscopy data taken in the
+Megason Lab. After capturing these images we can then use them to locate their
+initial pixel coordinates within the GoFigure2 GUI using the \emph{find}()
+function. These points become our reference positions to calculate directional
+movement.  For example, when testing the pan mode, we mark the initial position
+of each image, use the \emph{mouseMove}() function to a chosen location, and
+then use \emph{find}() to obtain the new coordinates. We can then assert if the
+image panned as it should have. Similarly for zoom, we can first find the area
+of the image and then find the area of the zoomed in image.  To test the result
+when the user clicks in a certain mode, we've made use of Sikuli's \emph{assert
+exists}() function to ascertain the existence of our desired results (see
+Figure~\ref{fig:Gofigure2Example}).\\
+
+This one GUI test is then combined with other GoFigure2 tests in succession and
+the Sikuli Unit Testing CTest integration will identify which tests pass and
+which fail and when. Many of the units need to be tested in a certain order.
+For example, in order to test the Toolbar modes on the data sets, one first
+needs to test the software's data import functionality.
+
+\begin{figure}[htp]
+ \centering
+ \includegraphics[width=0.99\textwidth]{Images/Gofigure2Example.png}
+ % Gofigure2Example.png: 667x826 pixel, 72dpi, 23.53x29.14 cm, bb=0 0 667 826
+ \caption{Sikuli Script for Gofigure2 GUI Testing}
+ \label{fig:Gofigure2Example}
 \end{figure}
 
 % ------------------------------------------------------------------------
@@ -144,53 +200,40 @@ developers. For GUI testing, it is useful to compartmentalize different software
 functions and test each unit individually.\\
 
 The newest versions of Sikuli come equipped with a Unit Testing feature based
-on JUnit~\cite{}. Unit Testing can be called using the IDE or by command
-line and enables the user to write multiple functions in a script which are
-run individually. At the end of the run, the Sikuli output will tell the user
-how many tests ran successfully and which ones failed and where.\\
+on JUnit~\cite{JUnit:Website}. Unit Testing can be called using the IDE or by
+command line and enables the user to write multiple functions in a script which
+are run individually. At the end of the run, the Sikuli output will tell the
+user how many tests ran successfully and which ones failed and where.\\
 
 Here we connect this Unit Testing feature to CTest, this allows us to report
-results on public dashboard using CDash.
+results on public dashboard using CDash. To this end, we developed cmake
+functions to discover where Sikuli is installed and special function to add
+sikuli test in the list of test for CTest.
+
+Here is a typical CMakeLists.txt file, to be able to use such functionalities:
+
+\begin{verbatim}
+# first let's include CTest and enable testing
+
+include( CTest )
+enable_testing()
+
+# Then let's
+#   - figure out where Sikuli is installed
+#   - define function to add Sikuli tests
+
+find_package( Sikuli )
+
+# here we add a sikuli test
+add_sikuli_test( ThunderbirdSikuliTest test.sikuli )
+\end{verbatim}
+
+Users can either maintain an image library, either keep images in the
+corresponding sikuli script directory (default). If one use an image library,
+the corresponding path must be set during CMake time in
+the SIKULI\_IMAGE\_LIBRARY\_DIR variable.
 
 
-% ------------------------------------------------------------------------
-\section{Example}
-
-The Sikuli script in Figure 2 shows a fragment of a unit test for the GoFigure2 software.  The unit being tested here
-is the Toolbar menu which consists of different modes used to analyze data set plots.
-In total there are four modes which are represented in the first line as the vector Toolbar and for each
-of these modes we want to test their expected mouse functions.  For instance, if we are in the zoom Toolbar mode
-then we want the data set plot to zoom in when the user scrolls the mouse wheel forward.  Likewise,
-if we are in pan mode then we want the plot to move to the left if the user holds down the left mouse button and moves
-the mouse to the left.  Also importantly, we want to see that these two mouse actions are unique for their respective Toolbar modes;
-the test will include an assertion that scrolling forward will zoom in when using zoom mode and will do nothing when using pan mode.\\
-
-This breakdown of modes and actions lends itself to a nested for-loop scripting approach. By representing
-these variables as a vector the software developers can easily add new modes or actions to each list to be tested, when
-the software is updated. Similarly, the tester can easily replace any of the screenshot images with images of updated
-GUI icons.\\  
-
-In addition to representing the modes and actions
-as the vectors Toolbar and Mouse, respectively, we've included the different data set plots in the vector ViewRegion.  
-These images represent the  \emph{xy-},  \emph{xz-},  \emph{yz-}, and  \emph{xyz-}views of zebrafish microscopy data taken in the Megason Lab.  After capturing
-these images we can then use them to locate their initial pixel coordinates within the GoFigure2 GUI using the \emph{find}() function.  These points become 
-our reference positions to calculate directional movement.  For example, when testing the pan mode, we mark the initial position of each image,
-use the \emph{mouseMove}() function to a chosen location, and then use \emph{find}() to obtain the new coordinates.  We can then assert if the image panned as it should have.
-Similarly for zoom, we can first find the area of the image and then find the area of the zoomed in image.  To test the result when the user clicks 
-in a certain mode, we've made use of Sikuli's \emph{assert exists}() function to ascertain the existence of our
-desired results   (see Figure~\ref{fig:Gofigure2Example}).\\
-
-This one GUI test is then combined with other GoFigure2 tests in succession and the Sikuli Unit Testing CTest integration will identify
-which tests pass and which fail and when. Many of the units need to be tested in a certain order.  For example, in order to test the Toolbar modes
-on the data sets, one first needs to test the software's data import functionality.
-
-\begin{figure}[htp]
- \centering
- \includegraphics[width=0.99\textwidth]{Images/Gofigure2Example.png}
- % Gofigure2Example.png: 667x826 pixel, 72dpi, 23.53x29.14 cm, bb=0 0 667 826
- \caption{Sikuli Script for Gofigure2 GUI Testing}
- \label{fig:Gofigure2Example}
-\end{figure}
 % ------------------------------------------------------------------------
 \section{Conclusion}
 
