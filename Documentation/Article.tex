@@ -48,9 +48,10 @@ colorlinks,linkcolor={blue},citecolor={blue},urlcolor={blue},
 
 % At minimum, give your name and an email address.  You can include a
 % snail-mail address if you like.
-\author{Evan Schwab, Lydie Souhait, Nicolas Rannou, Kishore Mosaliganti\\
-Arnaud Gelas, Sean Megason}
-\authoraddress{Harvard Medical School, Megason lab}
+\author{Evan Schwab, Arnaud Gelas, Lydie Souhait, Nicolas Rannou,\\
+Kishore Mosaliganti, Sean Megason}
+\authoraddress{Megason Lab, Department of Systems Biology, Harvard Medical
+School}
 
 \begin{document}
 
@@ -149,7 +150,7 @@ camera in the top menu or by using a keyboard shortcut. The simple Sikuli script
 example in Figure~\ref{fig:SimpleExample} will open gedit Text Editor, type a
 message, and save the file.
 
-\begin{figure}[htbp]
+\begin{figure}[tbp]
  \centering
  \includegraphics[width=0.99\textwidth]{Images/SimpleSikuliExample.png}
  % SimpleSikuliExample.png: 1280x1024 pixel, 72dpi, 45.16x36.12 cm, bb=0 0 1280 1024
@@ -160,21 +161,32 @@ message, and save the file.
 % ------------------------------------------------------------------------
 \section{Example}
 
-The GoFigure2 software~\cite{GoFigure2:Website} (See Figure~\ref{fig:GoFigure2GUI}) is designed to automate 
-cell segmentation and tracking for high resolution microscopy data and the Megason Lab uses it to
-create cell lineages of developing zebrafish emrbryos. The Sikuli script in Figure~\ref{fig:Gofigure2Example} shows a fragment of a
-unit test for our GoFigure2 software.   The unit being
-tested here is the Toolbar menu which consists of different modes used to
-analyze data set plots. In total there are four modes which are represented in
-the first line as the vector Toolbar and for each of these modes we want to test
-their expected mouse functions. For instance, if we are in the zoom Toolbar
-mode then we want the data set plot to zoom in when the user scrolls the mouse
-wheel forward. Likewise, if we are in pan mode then we want the plot to move to
-the left if the user holds down the left mouse button and moves the mouse to the
-left.  Also importantly, we want to see that these two mouse actions are unique
-for their respective Toolbar modes; the test will include an assertion that
-scrolling forward will zoom in when using zoom mode and will do nothing when
-using pan mode.\\
+The GoFigure2 software~\cite{GoFigure2:Website} (See
+Figure~\ref{fig:GoFigure2GUI}) is designed to automate
+cell segmentation and tracking for high resolution microscopy data and the
+Megason Lab uses it to create cell lineages of developing zebrafish emrbryos.
+The Sikuli script in Figure~\ref{fig:Gofigure2Example} shows a fragment of a
+unit test for our GoFigure2 software. The unit being tested here is the Toolbar
+menu which consists of different modes used to analyze data set plots. In total
+there are four modes which are represented in the first line as the vector
+Toolbar and for each of these modes we want to test their expected
+mouse functions. For instance, if we are in the zoom Toolbar mode then we want
+the data set plot to zoom in when the user scrolls the mouse wheel
+forward. Likewise, if we are in pan mode then we want the plot to move to the
+left if the user holds down the left mouse button and moves the mouse to
+the left. Also importantly, we want to see that these two mouse actions are
+unique for their respective Toolbar modes; the test will include an assertion
+that scrolling forward will zoom in when using zoom mode and will do nothing
+when using pan mode.\\
+
+\begin{figure}[tbp]
+ \centering
+ \includegraphics[width=0.99\textwidth]{Images/Gofigure2GUI.png}
+ % SimpleSikuliExample.png: 1280x1024 pixel, 72dpi, 45.16x36.12 cm, bb=0 0 1280
+ \caption{GoFigure2 GUI Interface}
+ \label{fig:GoFigure2GUI}
+\end{figure}
+
 
 This breakdown of modes and actions lends itself to a nested for-loop scripting
 approach. By representing these variables as a vector the software developers
@@ -204,15 +216,7 @@ which fail and when. Many of the units need to be tested in a certain order.
 For example, in order to test the Toolbar modes on the data sets, one first
 needs to test the software's data import functionality.
 
-\begin{figure}[htbp]
- \centering
- \includegraphics[width=0.99\textwidth]{Images/Gofigure2GUI.png}
- % SimpleSikuliExample.png: 1280x1024 pixel, 72dpi, 45.16x36.12 cm, bb=0 0 1280 1024
- \caption{GoFigure2 GUI Interface}
- \label{fig:GoFigure2GUI}
-\end{figure}
-
-\begin{figure}[htp]
+\begin{figure}[tbp]
  \centering
  \includegraphics[width=0.99\textwidth]{Images/Gofigure2Example.png}
  % Gofigure2Example.png: 667x826 pixel, 72dpi, 23.53x29.14 cm, bb=0 0 667 826
@@ -262,6 +266,18 @@ corresponding sikuli script directory (default). If one use an image library,
 the corresponding path must be set during CMake time in
 the SIKULI\_IMAGE\_LIBRARY\_DIR variable.
 
+% ------------------------------------------------------------------------
+\section{Current Limitation}
+
+\subsection{Text Recognition}
+
+\subsection{Off-screen Rendering}
+
+\subsection{Variation of style between machines}
+Different OS, different look => failures
+Even on the same OS, GUI can look different = > failures
+
+\subsection{CDash}
 
 % ------------------------------------------------------------------------
 \section{Conclusion}
