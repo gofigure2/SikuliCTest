@@ -87,12 +87,25 @@ Arnaud Gelas, Sean Megason}
 \tableofcontents
 % ------------------------------------------------------------------------
 \section{Introduction}
+
+%Should this be in the abstract instead?
+% difference between Abstract and Introduction?
+
 GUI testing is a key aspect of software development. Having a well defined testing protocol is very
-important in maintaining a productive flow, especially on the eve of a new release.  The number of units
-to test is greatly compounded as the software becomes more complex and keeping up with the complexity can be
-immensely time consuming.  We collected a list of over 400 different but very repetitive GUI tests which
-involved endless clicking and checking.  This task took around 5 hours to complete each time a new release was ready.
-Then debugging would push release dates back days or even weeks.   
+important in maintaining a productive flow, especially on the eve of a new release.  As the software becomes 
+more complex, testing each feature can be immensely time consuming.  
+We collected a list of over 400 different GUI tests which
+involved endlessly repetitive clicking and checking.  This task took around 5 hours to complete each time a new release was ready.
+And debugging would push release dates back days or even weeks.  We decided to tackle this problem by utilizing a new
+scripting language called Sikuli that can automate any visual operation.  In this way we could write scripts to automate the GUI testing.
+This cut the time to complete each test drastically.  Furthermore, we have integrated the automated tests with CTest.  Therefore we will be able to
+run the collection of tests every night and find bugs as they arise instead of the night before a new release.  As a result,
+the rate of new releases increased drastically.
+
+% Should the intro be about GoFigure2? with picture of GoFigure2
+% Also consult actual number of tests.
+%See Figure 3 ? -- picture of GIT log from presentation
+
 % ------------------------------------------------------------------------
 \section{Sikuli}
 
