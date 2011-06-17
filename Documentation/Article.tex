@@ -289,14 +289,34 @@ the SIKULI\_IMAGE\_LIBRARY\_DIR variable.
 \section{Current Limitations}
 \label{sec:Limitations}
 
-\subsection{Text Recognition}
-
+Sikuli's integration with CTest has provided us with numerous advantages in the
+measure of productivity and convenience. But our goals are still
+hindered by a few limitations.
+%\subsection{Text Recognition}
+%Sikuli's newer versions come equipped with a text recognition feature whereby
+%one can search for a string of text instead of searching for the image of the
+%text in the GUI.  This makes programming in Sikuli much simpler but it is
+%limited by it's searchable text fonts.
 \subsection{Off-screen Rendering}
-
+Our goal in using CTest is that we will be able to test our software
+automatically every night and bugs can be reported the next day on CDash.  But
+Sikuli is not easily compatible with off-screen rendering.  Sikuli requires
+that the screen remains on so that the script can identify the images on the
+screen.  In addition, external mouse and keyboard actions can disrupt the script
+at any moment.  These factors make it more difficult to set up automated
+nightly tests.  
 \subsection{Variation of style between machines}
-Different OS, different look => failures
-Even on the same OS, GUI can look different = > failures
-
+%Different OS, different look => failures
+%Even on the same OS, GUI can look different = > failures
+Another important issue is the difference between operating systems. 
+Developers need to make sure that their software runs on each
+OS.  But Different operating systems require different libraries for
+generating GUI images. Therefore fonts, icons, and even
+layouts will differ between machines. This is also true between versions of the
+same OS. So, GUI tests that pass on one machine will inevitably fail on another
+machine for the same exact software. This requires developers to write the
+same Sikuli script using images from each OS, which will be many times the
+workload.  
 \subsection{CDash}
 
 % ------------------------------------------------------------------------
