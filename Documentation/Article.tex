@@ -160,8 +160,10 @@ message, and save the file.
 % ------------------------------------------------------------------------
 \section{Example}
 
-The Sikuli script in Figure~\ref{fig:Gofigure2Example} shows a fragment of a
-unit test for the GoFigure2 software~\cite{GoFigure2:Website}. The unit being
+The GoFigure2 software~\cite{GoFigure2:Website} (See Figure~\ref{fig:GoFigure2GUI}) is designed to automate 
+cell segmentation and tracking for high resolution microscopy data and the Megason Lab uses it to
+create cell lineages of developing zebrafish emrbryos. The Sikuli script in Figure~\ref{fig:Gofigure2Example} shows a fragment of a
+unit test for our GoFigure2 software.   The unit being
 tested here is the Toolbar menu which consists of different modes used to
 analyze data set plots. In total there are four modes which are represented in
 the first line as the vector Toolbar and for each of these modes we want to test
@@ -201,6 +203,14 @@ the Sikuli Unit Testing CTest integration will identify which tests pass and
 which fail and when. Many of the units need to be tested in a certain order.
 For example, in order to test the Toolbar modes on the data sets, one first
 needs to test the software's data import functionality.
+
+\begin{figure}[htbp]
+ \centering
+ \includegraphics[width=0.99\textwidth]{Images/Gofigure2GUI.png}
+ % SimpleSikuliExample.png: 1280x1024 pixel, 72dpi, 45.16x36.12 cm, bb=0 0 1280 1024
+ \caption{GoFigure2 GUI Interface}
+ \label{fig:GoFigure2GUI}
+\end{figure}
 
 \begin{figure}[htp]
  \centering
