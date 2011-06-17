@@ -92,16 +92,31 @@ School}
 %Should this be in the abstract instead?
 % difference between Abstract and Introduction?
 
-GUI testing is a key aspect of software development. Having a well defined testing protocol is very
-important in maintaining a productive flow, especially on the eve of a new release.  As the software becomes 
-more complex, testing each feature can be immensely time consuming.  
-We collected a list of over 400 different GUI tests which
-involved endlessly repetitive clicking and checking.  This task took around 5 hours to complete each time a new release was ready.
-And debugging would push release dates back days or even weeks.  We decided to tackle this problem by utilizing a new
-scripting language called Sikuli that can automate any visual operation.  In this way we could write scripts to automate the GUI testing.
-This cut the time to complete each test drastically.  Furthermore, we have integrated the automated tests with CTest.  Therefore we will be able to
-run the collection of tests every night and find bugs as they arise instead of the night before a new release.  As a result,
-the rate of new releases increased drastically.
+GUI testing is a key aspect of software development. Having a well defined
+testing protocol is very important in maintaining a productive flow, especially
+on the eve of a new release. As the software becomes more complex, testing each
+feature can be immensely time consuming. We collected a list of over 400
+different GUI tests for the GoFigure2 software~\cite{GoFigure2:Website} which
+involved endlessly repetitive clicking and checking. This task took around 5
+hours to complete each time a new release was ready. And debugging would push
+release dates back days or even weeks. We decided to tackle this problem by
+utilizing a new scripting language called
+Sikuli~\cite{Sikuli:Documentation,Sikuli:Website,Yeh:2009:Sikuli} that can
+automate any visual operation. In this way we could write scripts to automate
+the GUI testing. This cut the time to complete each test drastically.
+Furthermore, we have integrated the automated tests with CTest. Therefore we
+are able to run the collection of tests every night and find bugs as they
+arise instead of the night before a new release. As a result, the rate of new
+releases increased drastically.\\
+
+The paper is organized as follows, first we will briefly introduce what is
+Sikuli (in section~\ref{sec:WhatIsSikuli}) and show one simple example (in
+section~\ref{sec:SimpleSikuliExample}). Then we will show a real test example
+on GoFigure2 (in section~\ref{sec:GoFigure2Example}) and how to integrate
+unit tests in CTest (in section~\ref{sec:IntegrationWithCTest}). Finally, we
+will review the current limitation of Sikuli and this approach for GUI Testing
+(in section~\ref{sec:Limitations}) and conclude (in
+section~\ref{sec:Conclusion}).
 
 % Should the intro be about GoFigure2? with picture of GoFigure2
 % Also consult actual number of tests.
@@ -111,7 +126,8 @@ the rate of new releases increased drastically.
 \section{Sikuli}
 
 % Feel free to change section titles
-\subsection{What is sikuli?}
+\subsection{What is Sikuli?}
+\label{sec:WhatIsSikuli}
 
 Sikuli~\cite{Sikuli:Documentation,Sikuli:Website,Yeh:2009:Sikuli} is a visual
 technology to automate and test graphical user interfaces (GUI) using images
@@ -133,8 +149,9 @@ directory with a unique extension .sikuli. The directory consists of a python
 script file (script file to be used by sikuli), an html file, and a list of all
 the screenshot images used in the script.
 
-
+% ------------------------------------------------------------------------
 \subsection{Simple Sikuli example} % not related to gofigure...
+\label{sec:SimpleSikuliExample}
 
 Figure~\ref{fig:SimpleExample} shows the Sikuli-IDE for version 0.10.2. On the
 left-hand side menu is a list of commonly used Sikuli commands
@@ -160,6 +177,7 @@ message, and save the file.
 
 % ------------------------------------------------------------------------
 \section{Example}
+\label{sec:GoFigure2Example}
 
 The GoFigure2 software~\cite{GoFigure2:Website} (See
 Figure~\ref{fig:GoFigure2GUI}) is designed to automate
@@ -226,6 +244,7 @@ needs to test the software's data import functionality.
 
 % ------------------------------------------------------------------------
 \section{Integration with CTest}
+\label{sec:IntegrationWithCTest}
 
 % I'll write it this part
 One of Sikuli's primary uses is the automation of GUI testing for software
@@ -258,7 +277,7 @@ enable_testing()
 find_package( Sikuli )
 
 # here we add a sikuli test
-add_sikuli_test( ThunderbirdSikuliTest test.sikuli )
+add_sikuli_test( GoFigure2ToolbarTest toolbar.sikuli )
 \end{verbatim}
 
 Users can either maintain an image library, either keep images in the
@@ -267,7 +286,8 @@ the corresponding path must be set during CMake time in
 the SIKULI\_IMAGE\_LIBRARY\_DIR variable.
 
 % ------------------------------------------------------------------------
-\section{Current Limitation}
+\section{Current Limitations}
+\label{sec:Limitations}
 
 \subsection{Text Recognition}
 
@@ -281,6 +301,7 @@ Even on the same OS, GUI can look different = > failures
 
 % ------------------------------------------------------------------------
 \section{Conclusion}
+\label{sec:Conclusion}
 
 \clearpage
 
