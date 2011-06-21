@@ -246,7 +246,8 @@ needs to test the software's data import functionality.
 \section{Integration with CTest}
 \label{sec:IntegrationWithCTest}
 
-% I'll write it this part
+\subsection{CMake}
+
 One of Sikuli's primary uses is the automation of GUI testing for software
 developers. For GUI testing, it is useful to compartmentalize different software
 functions and test each unit individually.\\
@@ -257,10 +258,10 @@ command line and enables the user to write multiple functions in a script which
 are run individually. At the end of the run, the Sikuli output will tell the
 user how many tests ran successfully and which ones failed and where.\\
 
-Here we connect this Unit Testing feature to CTest, this allows us to report
-results on public dashboard using CDash. To this end, we developed cmake
-functions to discover where Sikuli is installed and special function to add
-sikuli test in the list of test for CTest.
+Here we connect this Unit Testing feature to CTest, which allows us to report
+results on a public dashboard using CDash. To this end, we developed cmake
+functions to discover where Sikuli is installed and special functions to add
+Sikuli tests in the list for CTest.
 
 Here is a typical CMakeLists.txt file, to be able to use such functionalities:
 
@@ -280,10 +281,32 @@ find_package( Sikuli )
 add_sikuli_test( GoFigure2ToolbarTest toolbar.sikuli )
 \end{verbatim}
 
-Users can either maintain an image library, either keep images in the
-corresponding sikuli script directory (default). If one use an image library,
+Users can either maintain an image library or keep images in the
+corresponding Sikuli script directory (default). If one uses an image library,
 the corresponding path must be set during CMake time in
 the SIKULI\_IMAGE\_LIBRARY\_DIR variable.
+
+\subsection{Unit Test Script Format}
+
+Unit testing scripts are written as a series of functions defined by pythons
+keyword def.  The constructing and destructing methods,
+\emph{setUp}() and \emph{tearDown}(), are used to start and end the software
+GUI and methods in between are named with the prefix test.
+
+\begin{verbatim}
+def setUp(self):
+  print "setUp";
+
+def testPrint(self):
+  print "dummy test to validate, it is printing on the screen!";
+
+def tearDown(self):
+  print "tearDown";
+\end{verbatim}
+
+When this script is run with the Sikuli Unit Testing feature, it will report the
+results of each test method in CTest and then reported automatically on
+CDash.
 
 % ------------------------------------------------------------------------
 \section{Current Limitations}
@@ -321,6 +344,12 @@ same exact software. This requires developers to write the same Sikuli
 script using images from each OS, which will be many times the workload.
 
 \subsection{CDash}
+Furthermore, CDash does not currently support Sikuli script since images used
+in the script are unable to be displayed on the dashboard.  Without these
+images on CDash, visualize which units are being tested.  In addition, CDash
+does not make the distinction between simple syntax errors versus a complete
+test failure. These are
+extensions to CDash that can be corrected for future work.
 
 % ------------------------------------------------------------------------
 \section{Conclusion}
