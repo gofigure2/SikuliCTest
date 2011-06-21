@@ -80,7 +80,13 @@ School}
 
 \begin{abstract}
 \noindent
- 
+In order to test our software GoFigure2~\cite{GoFigure2:Website} (for the
+visualization and the processing of extremely large $3D+t$ microscopy images),
+we utilized the visual programming technology Sikuli~\cite{Sikuli:Website} to
+automate our GUI testing. We then integrated these Sikuli tests into CTest and
+used CDash to report the results on a dashboard with the view to test our
+software automatically every night and detect bugs as soon as they occur.  Our
+rate of releases more than doubled as a result.
 \end{abstract}
 
 \IJhandlenote{\IJhandlerIDnumber}
@@ -107,7 +113,8 @@ the GUI testing. This cut the time to complete each test drastically.
 Furthermore, we have integrated the automated tests with CTest. Therefore we
 are able to run the collection of tests every night and find bugs as they
 arise instead of the night before a new release. As a result, the rate of new
-releases increased drastically.\\
+releases increased drastically from one
+release every five months to one release every two months. \\
 
 The paper is organized as follows, first we will briefly introduce what is
 Sikuli (in section~\ref{sec:WhatIsSikuli}) and show one simple example (in
@@ -145,8 +152,8 @@ In the \emph{Sikuli IDE}, the user can write scripts that include screenshot
 thumbnails so they can visually track the functions of their code. The most
 useful functions from Sikuli scripts are conveniently found as
 buttons on the IDE. When using the IDE, Sikuli then saves a script in a
-directory with a unique extension .sikuli. The directory consists of a python
-script file (script file to be used by sikuli), an html file, and a list of all
+directory with a unique extension .Sikuli. The directory consists of a python
+script file (script file to be used by Sikuli), an html file, and a list of all
 the screenshot images used in the script.
 
 % ------------------------------------------------------------------------
@@ -170,7 +177,8 @@ message, and save the file.
 \begin{figure}[tbp]
  \centering
  \includegraphics[width=0.99\textwidth]{Images/SimpleSikuliExample.png}
- % SimpleSikuliExample.png: 1280x1024 pixel, 72dpi, 45.16x36.12 cm, bb=0 0 1280 1024
+ % SimpleSikuliExample.png: 1280x1024 pixel, 72dpi, 45.16x36.12 cm, bb=0 0 1280
+1024
  \caption{Simple Sikuli Script Example in Sikuli-IDE}
  \label{fig:SimpleExample}
 \end{figure}
@@ -277,8 +285,8 @@ enable_testing()
 
 find_package( Sikuli )
 
-# here we add a sikuli test
-add_sikuli_test( GoFigure2ToolbarTest toolbar.sikuli )
+# here we add a Sikuli test
+add_Sikuli_test( GoFigure2ToolbarTest toolbar.Sikuli )
 \end{verbatim}
 
 Users can either maintain an image library or keep images in the
@@ -346,12 +354,29 @@ Furthermore, CDash does not currently support Sikuli script since images used
 in the script are unable to be displayed on the dashboard.  Without these
 images on CDash, visualize which units are being tested.  In addition, CDash
 does not make the distinction between simple syntax errors versus a complete
-test failure. These are
-extensions to CDash that can be corrected for future work.
+test failure. These are extensions to CDash that can be corrected for future
+work.
 
 % ------------------------------------------------------------------------
 \section{Conclusion}
 \label{sec:Conclusion}
+In this paper we discussed the uses of Sikuli unit testing and how they can be
+integrated into CTest.  Although we have recognized limitations within the
+current infrastructure (Sikuli and CDash), there is great potential to make
+these technologies more universal thanks to the fast growing Sikuli
+community. The results of our increased productivity have proven this
+technology well worth the effort.\\
+
+Due to the previous exposed limitations (see section~\ref{sec:Limitations}),
+provided examples may not run on your machine. However, it is easy enough to
+adapt these tests to your system.
+
+\section*{Note}
+As of now, Sikuli has been successfully integrated with CTest on
+linux, and it
+requires some more work for Windows and Mac. We would welcome
+contributions to make it happen!
+
 
 \clearpage
 
