@@ -4,6 +4,7 @@
 build/
 BUILD/
 CTestConfig.cmake
+*.orig
 
 # latex
 *.aux
