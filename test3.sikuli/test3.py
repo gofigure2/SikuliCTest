@@ -1,6 +1,9 @@
-from sikuli.Sikuli import *
+def setUp(self):
+  print "setUp";
 
-def mytest(self):
-	print "mytest";
-	
-	
+def testPrint(self):
+  print "dummy test to validate, it is printing on the screen!";
+
+def tearDown(self):
+  print "tearDown";
+

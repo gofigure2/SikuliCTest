@@ -1,9 +1,9 @@
 def setUp(self):
   print "setUp";
 
-def testA(self):
-  print "failing test";
-  assertExist( "1301610526405.png" );
+def testSyntaxError(self):
+  print "syntax error";
+  unclick();
 
 def tearDown(self):
   print "tearDown";
