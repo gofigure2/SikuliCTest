@@ -74,8 +74,11 @@
   <span class="kw">print</span> <span class="str">"setUp"</span>;
 
 <span class="kw">def</span> testA(self):
-  <span class="kw">print</span> <span class="str">"failing test"</span>
-  <span class="skw">assertExist</span>(Pattern(<img src="1301610526405.png" />).similar(<span class="dig">0.9</span>));
+  <span class="kw">print</span> <span class="str">"syntax error"</span>;
+  unclick();
+
+<span class="kw">def</span> tearDown(self):
+  <span class="kw">print</span> <span class="str">"tearDown"</span>;
 </pre>
 </body>
 </html>

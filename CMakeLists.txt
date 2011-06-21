@@ -13,13 +13,15 @@ if( SIKULI_FOUND )
   include( CTest )
   ENABLE_TESTING()
 
+  # we launch thunderbird by clicking on its icon
   add_sikuli_test( ThunderbirdSikuliTest
     test.sikuli
   )
 
-  add_sikuli_test( SikuliScriptWithArgumentTest
+  # we make use of a function which does not exist
+  # unclick()
+  add_sikuli_test( SyntaxError
     test2.sikuli
-    arg1 arg2 arg3 arg4
   )
 
   add_sikuli_test( test3
