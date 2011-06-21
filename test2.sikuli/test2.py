@@ -1,7 +1,7 @@
 def setUp(self):
   print "setUp";
 
-def testA(self):
+def testSyntaxError(self):
   print "syntax error";
   unclick();
 

@@ -20,11 +20,11 @@ if( SIKULI_FOUND )
 
   # we make use of a function which does not exist
   # unclick()
-  add_sikuli_test( SyntaxError
+  add_sikuli_test( SyntaxErrorSikuliTest
     test2.sikuli
   )
 
-  add_sikuli_test( test3
+  add_sikuli_test( PrintSikuliTest
     test3.sikuli
   )
 
