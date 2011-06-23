@@ -13,8 +13,8 @@ if( SIKULI_FOUND )
   include( CTest )
   ENABLE_TESTING()
 
-  # we launch thunderbird by clicking on its icon
-  add_sikuli_test( ThunderbirdSikuliTest
+  # we launch firefox by clicking on its icon
+  add_sikuli_test( FirefoxSikuliTest
     test.sikuli
   )
 

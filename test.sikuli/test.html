@@ -70,11 +70,19 @@
 <h2>test.sikuli</h2> <a href="test.zip">(Download this script)</a>
 </div>
 <pre class="sikuli-code">
-<span class="kw">from</span> sikuli.Sikuli <span class="kw">import</span> *
+<span class="kw">def</span> setUp(self):
+        <span class="kw">print</span> <span class="str">"setUp"</span>;
 
-<span class="cmt">#def MyOwnTest(self):
-</span><span class="cmt">#print "Thunderbird"
-</span><span class="skw">click</span>(<img src="1299697212820.png" />)
+<span class="kw">def</span> testFirefox(self):
+        <span class="kw">print</span> <span class="str">"Click on firefox"</span>;
+        <span class="skw">click</span>(<img src="1308851838899.png" />)
+        <span class="skw">doubleClick</span>(<img src="1308852041788.png" />)
+        <span class="skw">type</span>(<span class="str">"http://midasjournal.org"</span>+Key.ENTER)
+        <span class="skw">click</span>(<img src="1308852315244.png" />)
+        <span class="skw">type</span>(<span class="str">"sikuli"</span>+Key.ENTER)
+
+<span class="kw">def</span> tearDown(self):
+        <span class="kw">print</span> <span class="str">"tearDown"</span>;
 </pre>
 </body>
 </html>

@@ -1,6 +1,7 @@
 *~
 *.backup
 *.log
+tmplib/
 build/
 BUILD/
 CTestConfig.cmake
